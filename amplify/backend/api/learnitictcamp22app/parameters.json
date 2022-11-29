@@ -1,0 +1,5 @@
+{
+  "AppSyncApiName": "learnitictcamp22app",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false
+}

@@ -1,0 +1,7 @@
+type UntitledModel @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  questionName: String
+  questionDescription: String
+  min: Int
+  max: String
+}

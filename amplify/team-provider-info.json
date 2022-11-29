@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify89183f5b7d874-staging-182936-authRole",
+      "UnauthRoleArn": "arn:aws:iam::302443779394:role/amplify-amplify89183f5b7d874-staging-182936-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::302443779394:role/amplify-amplify89183f5b7d874-staging-182936-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-amplify89183f5b7d874-staging-182936-deployment",
+      "UnauthRoleName": "amplify-amplify89183f5b7d874-staging-182936-unauthRole",
+      "StackName": "amplify-amplify89183f5b7d874-staging-182936",
+      "StackId": "arn:aws:cloudformation:eu-north-1:302443779394:stack/amplify-amplify89183f5b7d874-staging-182936/c765a3d0-7013-11ed-85b5-0663462825c2",
+      "AmplifyAppId": "d1we7iqz4euf5e"
+    },
+    "categories": {
+      "auth": {
+        "learnitictcamp22app": {}
+      }
+    }
+  }
+}
