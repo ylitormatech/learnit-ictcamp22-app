@@ -6,9 +6,43 @@ import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
 
-type EagerUntitledModel = {
+type EagerUserProfile = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UntitledModel, 'id'>;
+    identifier: ManagedIdentifier<UserProfile, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly username?: string | null;
+  readonly firstname?: string | null;
+  readonly lastname?: string | null;
+  readonly email?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyUserProfile = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<UserProfile, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly username?: string | null;
+  readonly firstname?: string | null;
+  readonly lastname?: string | null;
+  readonly email?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type UserProfile = LazyLoading extends LazyLoadingDisabled ? EagerUserProfile : LazyUserProfile
+
+export declare const UserProfile: (new (init: ModelInit<UserProfile>) => UserProfile) & {
+  copyOf(source: UserProfile, mutator: (draft: MutableModel<UserProfile>) => MutableModel<UserProfile> | void): UserProfile;
+}
+
+type EagerQuestions = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<Questions, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
@@ -20,9 +54,9 @@ type EagerUntitledModel = {
   readonly updatedAt?: string | null;
 }
 
-type LazyUntitledModel = {
+type LazyQuestions = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UntitledModel, 'id'>;
+    identifier: ManagedIdentifier<Questions, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
@@ -34,8 +68,8 @@ type LazyUntitledModel = {
   readonly updatedAt?: string | null;
 }
 
-export declare type UntitledModel = LazyLoading extends LazyLoadingDisabled ? EagerUntitledModel : LazyUntitledModel
+export declare type Questions = LazyLoading extends LazyLoadingDisabled ? EagerQuestions : LazyQuestions
 
-export declare const UntitledModel: (new (init: ModelInit<UntitledModel>) => UntitledModel) & {
-  copyOf(source: UntitledModel, mutator: (draft: MutableModel<UntitledModel>) => MutableModel<UntitledModel> | void): UntitledModel;
+export declare const Questions: (new (init: ModelInit<Questions>) => Questions) & {
+  copyOf(source: Questions, mutator: (draft: MutableModel<Questions>) => MutableModel<Questions> | void): Questions;
 }
