@@ -5,7 +5,6 @@
  **************************************************************************/
 
 export { default as HeroLayout3 } from "./HeroLayout3";
-<<<<<<< HEAD
 export { default as NavigationButtonBack } from "./NavigationButtonBack";
 export { default as Section } from "./Section";
 export { default as Header } from "./Header";
@@ -20,13 +19,6 @@ export { default as UserAnswersCreateForm } from "./UserAnswersCreateForm";
 export { default as UserAnswersUpdateForm } from "./UserAnswersUpdateForm";
 export { default as SelectionCreateForm } from "./SelectionCreateForm";
 export { default as SelectionUpdateForm } from "./SelectionUpdateForm";
-=======
-export { default as Header } from "./Header";
-export { default as MyIcon } from "./MyIcon";
-export { default as Nuolieteen } from "./Nuolieteen";
-export { default as studioTheme } from "./studioTheme";
-export { default as Kysymys1 } from "./Kysymys1";
->>>>>>> e3d0c8f6f31c72d69653456acd98bf35b3d250b9
 export { default as UserProfileCreateForm } from "./UserProfileCreateForm";
 export { default as UserProfileUpdateForm } from "./UserProfileUpdateForm";
 export { default as QuestionsUpdateForm } from "./QuestionsUpdateForm";
