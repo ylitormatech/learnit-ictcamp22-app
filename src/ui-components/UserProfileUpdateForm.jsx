@@ -56,7 +56,7 @@ export default function UserProfileUpdateForm(props) {
     username: [],
     firstname: [],
     lastname: [],
-    email: [],
+    email: [{ type: "Required" }],
   };
   const runValidationTasks = async (fieldName, value) => {
     let validationResponse = validateField(value, validations[fieldName]);
@@ -204,7 +204,7 @@ export default function UserProfileUpdateForm(props) {
       ></TextField>
       <TextField
         label="Email"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         defaultValue={email}
         onChange={(e) => {

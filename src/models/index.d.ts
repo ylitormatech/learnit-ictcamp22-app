@@ -3,7 +3,7 @@ import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-
 import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
-//<<<<<<< HEAD
+
 
 
 type EagerUserAnswers = {
@@ -15,7 +15,7 @@ type EagerUserAnswers = {
   readonly selectionID?: string | null;
   readonly questionID?: string | null;
   readonly value?: number | null;
-  readonly userID?: string | null;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -29,7 +29,7 @@ type LazyUserAnswers = {
   readonly selectionID?: string | null;
   readonly questionID?: string | null;
   readonly value?: number | null;
-  readonly userID?: string | null;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -40,44 +40,8 @@ export declare const UserAnswers: (new (init: ModelInit<UserAnswers>) => UserAns
   copyOf(source: UserAnswers, mutator: (draft: MutableModel<UserAnswers>) => MutableModel<UserAnswers> | void): UserAnswers;
 }
 
-type EagerSelection = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Selection, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly questionID?: string | null;
-  readonly description?: string | null;
-  readonly value?: number | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-type LazySelection = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Selection, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly questionID?: string | null;
-  readonly description?: string | null;
-  readonly value?: number | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-export declare type Selection = LazyLoading extends LazyLoadingDisabled ? EagerSelection : LazySelection
-
-export declare const Selection: (new (init: ModelInit<Selection>) => Selection) & {
-  copyOf(source: Selection, mutator: (draft: MutableModel<Selection>) => MutableModel<Selection> | void): Selection;
-}
-
 type EagerUserProfile = {
   readonly [__modelMeta__]: {
-//<<<<<<< HEAD
-//>>>>>>> 0582d9e3c62db2a4e4b897ba962cc7bac081a23c
-//=======
-//>>>>>>> edae2ede2d8c6fd0ef86de0c920057dc2b8b9430
     identifier: ManagedIdentifier<UserProfile, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
@@ -85,7 +49,7 @@ type EagerUserProfile = {
   readonly username?: string | null;
   readonly firstname?: string | null;
   readonly lastname?: string | null;
-  readonly email?: string | null;
+  readonly email: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -99,7 +63,7 @@ type LazyUserProfile = {
   readonly username?: string | null;
   readonly firstname?: string | null;
   readonly lastname?: string | null;
-  readonly email?: string | null;
+  readonly email: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -116,10 +80,10 @@ type EagerQuestions = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly questionName?: string | null;
-  readonly questionDescription?: string | null;
+  readonly question: string;
   readonly min?: number | null;
   readonly max: number;
+  readonly selections?: (string | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -130,10 +94,10 @@ type LazyQuestions = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly questionName?: string | null;
-  readonly questionDescription?: string | null;
+  readonly question: string;
   readonly min?: number | null;
   readonly max: number;
+  readonly selections?: (string | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

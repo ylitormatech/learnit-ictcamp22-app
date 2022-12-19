@@ -9,8 +9,150 @@ import * as React from "react";
 import { fetchByPath, validateField } from "./utils";
 import { Questions } from "../models";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Badge,
+  Button,
+  Divider,
+  Flex,
+  Grid,
+  Icon,
+  ScrollView,
+  Text,
+  TextField,
+  useTheme,
+} from "@aws-amplify/ui-react";
 import { DataStore } from "aws-amplify";
+function ArrayField({
+  items = [],
+  onChange,
+  label,
+  inputFieldRef,
+  children,
+  hasError,
+  setFieldValue,
+  currentFieldValue,
+  defaultFieldValue,
+}) {
+  const { tokens } = useTheme();
+  const [selectedBadgeIndex, setSelectedBadgeIndex] = React.useState();
+  const [isEditing, setIsEditing] = React.useState();
+  React.useEffect(() => {
+    if (isEditing) {
+      inputFieldRef?.current?.focus();
+    }
+  }, [isEditing]);
+  const removeItem = async (removeIndex) => {
+    const newItems = items.filter((value, index) => index !== removeIndex);
+    await onChange(newItems);
+    setSelectedBadgeIndex(undefined);
+  };
+  const addItem = async () => {
+    if (
+      (currentFieldValue !== undefined ||
+        currentFieldValue !== null ||
+        currentFieldValue !== "") &&
+      !hasError
+    ) {
+      const newItems = [...items];
+      if (selectedBadgeIndex !== undefined) {
+        newItems[selectedBadgeIndex] = currentFieldValue;
+        setSelectedBadgeIndex(undefined);
+      } else {
+        newItems.push(currentFieldValue);
+      }
+      await onChange(newItems);
+      setIsEditing(false);
+    }
+  };
+  return (
+    <React.Fragment>
+      {isEditing && children}
+      {!isEditing ? (
+        <>
+          <Text>{label}</Text>
+          <Button
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            Add item
+          </Button>
+        </>
+      ) : (
+        <Flex justifyContent="flex-end">
+          {(currentFieldValue || isEditing) && (
+            <Button
+              children="Cancel"
+              type="button"
+              size="small"
+              onClick={() => {
+                setFieldValue(defaultFieldValue);
+                setIsEditing(false);
+                setSelectedBadgeIndex(undefined);
+              }}
+            ></Button>
+          )}
+          <Button
+            size="small"
+            variation="link"
+            color={tokens.colors.brand.primary[80]}
+            isDisabled={hasError}
+            onClick={addItem}
+          >
+            {selectedBadgeIndex !== undefined ? "Save" : "Add"}
+          </Button>
+        </Flex>
+      )}
+      {!!items?.length && (
+        <ScrollView height="inherit" width="inherit" maxHeight={"7rem"}>
+          {items.map((value, index) => {
+            return (
+              <Badge
+                key={index}
+                style={{
+                  cursor: "pointer",
+                  alignItems: "center",
+                  marginRight: 3,
+                  marginTop: 3,
+                  backgroundColor:
+                    index === selectedBadgeIndex ? "#B8CEF9" : "",
+                }}
+                onClick={() => {
+                  setSelectedBadgeIndex(index);
+                  setFieldValue(items[index]);
+                  setIsEditing(true);
+                }}
+              >
+                {value.toString()}
+                <Icon
+                  style={{
+                    cursor: "pointer",
+                    paddingLeft: 3,
+                    width: 20,
+                    height: 20,
+                  }}
+                  viewBox={{ width: 20, height: 20 }}
+                  paths={[
+                    {
+                      d: "M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z",
+                      stroke: "black",
+                    },
+                  ]}
+                  ariaLabel="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    removeItem(index);
+                  }}
+                />
+              </Badge>
+            );
+          })}
+        </ScrollView>
+      )}
+      <Divider orientation="horizontal" marginTop={5} />
+    </React.Fragment>
+  );
+}
 export default function QuestionsUpdateForm(props) {
   const {
     id,
@@ -25,26 +167,23 @@ export default function QuestionsUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    questionName: undefined,
-    questionDescription: undefined,
+    question: undefined,
     min: undefined,
     max: undefined,
+    selections: [],
   };
-  const [questionName, setQuestionName] = React.useState(
-    initialValues.questionName
-  );
-  const [questionDescription, setQuestionDescription] = React.useState(
-    initialValues.questionDescription
-  );
+  const [question, setQuestion] = React.useState(initialValues.question);
   const [min, setMin] = React.useState(initialValues.min);
   const [max, setMax] = React.useState(initialValues.max);
+  const [selections, setSelections] = React.useState(initialValues.selections);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = { ...initialValues, ...questionsRecord };
-    setQuestionName(cleanValues.questionName);
-    setQuestionDescription(cleanValues.questionDescription);
+    setQuestion(cleanValues.question);
     setMin(cleanValues.min);
     setMax(cleanValues.max);
+    setSelections(cleanValues.selections ?? []);
+    setCurrentSelectionsValue(undefined);
     setErrors({});
   };
   const [questionsRecord, setQuestionsRecord] = React.useState(questions);
@@ -56,11 +195,14 @@ export default function QuestionsUpdateForm(props) {
     queryData();
   }, [id, questions]);
   React.useEffect(resetStateValues, [questionsRecord]);
+  const [currentSelectionsValue, setCurrentSelectionsValue] =
+    React.useState(undefined);
+  const selectionsRef = React.createRef();
   const validations = {
-    questionName: [],
-    questionDescription: [],
+    question: [{ type: "Required" }],
     min: [],
     max: [{ type: "Required" }],
+    selections: [],
   };
   const runValidationTasks = async (fieldName, value) => {
     let validationResponse = validateField(value, validations[fieldName]);
@@ -80,10 +222,10 @@ export default function QuestionsUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          questionName,
-          questionDescription,
+          question,
           min,
           max,
+          selections,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -126,60 +268,31 @@ export default function QuestionsUpdateForm(props) {
       {...getOverrideProps(overrides, "QuestionsUpdateForm")}
     >
       <TextField
-        label="Question name"
-        isRequired={false}
+        label="Question"
+        isRequired={true}
         isReadOnly={false}
-        defaultValue={questionName}
+        defaultValue={question}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              questionName: value,
-              questionDescription,
+              question: value,
               min,
               max,
+              selections,
             };
             const result = onChange(modelFields);
-            value = result?.questionName ?? value;
+            value = result?.question ?? value;
           }
-          if (errors.questionName?.hasError) {
-            runValidationTasks("questionName", value);
+          if (errors.question?.hasError) {
+            runValidationTasks("question", value);
           }
-          setQuestionName(value);
+          setQuestion(value);
         }}
-        onBlur={() => runValidationTasks("questionName", questionName)}
-        errorMessage={errors.questionName?.errorMessage}
-        hasError={errors.questionName?.hasError}
-        {...getOverrideProps(overrides, "questionName")}
-      ></TextField>
-      <TextField
-        label="Question description"
-        isRequired={false}
-        isReadOnly={false}
-        defaultValue={questionDescription}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              questionName,
-              questionDescription: value,
-              min,
-              max,
-            };
-            const result = onChange(modelFields);
-            value = result?.questionDescription ?? value;
-          }
-          if (errors.questionDescription?.hasError) {
-            runValidationTasks("questionDescription", value);
-          }
-          setQuestionDescription(value);
-        }}
-        onBlur={() =>
-          runValidationTasks("questionDescription", questionDescription)
-        }
-        errorMessage={errors.questionDescription?.errorMessage}
-        hasError={errors.questionDescription?.hasError}
-        {...getOverrideProps(overrides, "questionDescription")}
+        onBlur={() => runValidationTasks("question", question)}
+        errorMessage={errors.question?.errorMessage}
+        hasError={errors.question?.hasError}
+        {...getOverrideProps(overrides, "question")}
       ></TextField>
       <TextField
         label="Min"
@@ -199,10 +312,10 @@ export default function QuestionsUpdateForm(props) {
           }
           if (onChange) {
             const modelFields = {
-              questionName,
-              questionDescription,
+              question,
               min: value,
               max,
+              selections,
             };
             const result = onChange(modelFields);
             value = result?.min ?? value;
@@ -235,10 +348,10 @@ export default function QuestionsUpdateForm(props) {
           }
           if (onChange) {
             const modelFields = {
-              questionName,
-              questionDescription,
+              question,
               min,
               max: value,
+              selections,
             };
             const result = onChange(modelFields);
             value = result?.max ?? value;
@@ -253,6 +366,51 @@ export default function QuestionsUpdateForm(props) {
         hasError={errors.max?.hasError}
         {...getOverrideProps(overrides, "max")}
       ></TextField>
+      <ArrayField
+        onChange={async (items) => {
+          let values = items;
+          if (onChange) {
+            const modelFields = {
+              question,
+              min,
+              max,
+              selections: values,
+            };
+            const result = onChange(modelFields);
+            values = result?.selections ?? values;
+          }
+          setSelections(values);
+          setCurrentSelectionsValue(undefined);
+        }}
+        currentFieldValue={currentSelectionsValue}
+        label={"Selections"}
+        items={selections}
+        hasError={errors.selections?.hasError}
+        setFieldValue={setCurrentSelectionsValue}
+        inputFieldRef={selectionsRef}
+        defaultFieldValue={undefined}
+      >
+        <TextField
+          label="Selections"
+          isRequired={false}
+          isReadOnly={false}
+          value={currentSelectionsValue}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.selections?.hasError) {
+              runValidationTasks("selections", value);
+            }
+            setCurrentSelectionsValue(value);
+          }}
+          onBlur={() =>
+            runValidationTasks("selections", currentSelectionsValue)
+          }
+          errorMessage={errors.selections?.errorMessage}
+          hasError={errors.selections?.hasError}
+          ref={selectionsRef}
+          {...getOverrideProps(overrides, "selections")}
+        ></TextField>
+      </ArrayField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

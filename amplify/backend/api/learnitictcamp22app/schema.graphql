@@ -3,33 +3,22 @@ type UserAnswers @model @auth(rules: [{allow: public}]) {
   selectionID: ID
   questionID: ID
   value: Int
-  userID: ID
+  userID: ID!
 }
 
-type Selection @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  questionID: ID
-  description: String
-  value: Int
-}
-
-<<<<<<< HEAD
->>>>>>> 0582d9e3c62db2a4e4b897ba962cc7bac081a23c
-=======
->>>>>>> edae2ede2d8c6fd0ef86de0c920057dc2b8b9430
 type UserProfile @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String
   firstname: String
   lastname: String
-  email: String
+  email: String!
 }
 
 type Questions @model @auth(rules: [{allow: public}]) {
   id: ID!
-  questionName: String
-  questionDescription: String
+  question: String!
   min: Int
   max: Int!
+  selections: [String]
 }
  
