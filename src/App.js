@@ -6,7 +6,7 @@ import '@aws-amplify/ui-react/styles.css';
 import awsExports from './aws-exports';
 
 import './App.css';
-import { Nuolieteen } from './ui-components';
+import { NavigationButtonForward } from './ui-components';
 
 Amplify.configure(awsExports);
 
@@ -23,7 +23,7 @@ function App({ signOut, user }) {
         </div>
         <p>Hello {user.username}</p>
         <button onClick={signOut}>Kirjaudu ulos</button>
-        <Nuolieteen />
+        <NavigationButtonForward />
       </>
   );
 }
