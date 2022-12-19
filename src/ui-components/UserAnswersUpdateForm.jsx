@@ -28,18 +28,21 @@ export default function UserAnswersUpdateForm(props) {
     selectionID: undefined,
     questionID: undefined,
     value: undefined,
+    userID: undefined,
   };
   const [selectionID, setSelectionID] = React.useState(
     initialValues.selectionID
   );
   const [questionID, setQuestionID] = React.useState(initialValues.questionID);
   const [value, setValue] = React.useState(initialValues.value);
+  const [userID, setUserID] = React.useState(initialValues.userID);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = { ...initialValues, ...userAnswersRecord };
     setSelectionID(cleanValues.selectionID);
     setQuestionID(cleanValues.questionID);
     setValue(cleanValues.value);
+    setUserID(cleanValues.userID);
     setErrors({});
   };
   const [userAnswersRecord, setUserAnswersRecord] = React.useState(userAnswers);
@@ -55,6 +58,7 @@ export default function UserAnswersUpdateForm(props) {
     selectionID: [],
     questionID: [],
     value: [],
+    userID: [],
   };
   const runValidationTasks = async (fieldName, value) => {
     let validationResponse = validateField(value, validations[fieldName]);
@@ -77,6 +81,7 @@ export default function UserAnswersUpdateForm(props) {
           selectionID,
           questionID,
           value,
+          userID,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -130,6 +135,7 @@ export default function UserAnswersUpdateForm(props) {
               selectionID: value,
               questionID,
               value,
+              userID,
             };
             const result = onChange(modelFields);
             value = result?.selectionID ?? value;
@@ -156,6 +162,7 @@ export default function UserAnswersUpdateForm(props) {
               selectionID,
               questionID: value,
               value,
+              userID,
             };
             const result = onChange(modelFields);
             value = result?.questionID ?? value;
@@ -191,6 +198,7 @@ export default function UserAnswersUpdateForm(props) {
               selectionID,
               questionID,
               value: value,
+              userID,
             };
             const result = onChange(modelFields);
             value = result?.value ?? value;
@@ -204,6 +212,33 @@ export default function UserAnswersUpdateForm(props) {
         errorMessage={errors.value?.errorMessage}
         hasError={errors.value?.hasError}
         {...getOverrideProps(overrides, "value")}
+      ></TextField>
+      <TextField
+        label="User id"
+        isRequired={false}
+        isReadOnly={false}
+        defaultValue={userID}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              selectionID,
+              questionID,
+              value,
+              userID: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.userID ?? value;
+          }
+          if (errors.userID?.hasError) {
+            runValidationTasks("userID", value);
+          }
+          setUserID(value);
+        }}
+        onBlur={() => runValidationTasks("userID", userID)}
+        errorMessage={errors.userID?.errorMessage}
+        hasError={errors.userID?.hasError}
+        {...getOverrideProps(overrides, "userID")}
       ></TextField>
       <Flex
         justifyContent="space-between"

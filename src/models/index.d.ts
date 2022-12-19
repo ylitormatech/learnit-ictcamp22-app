@@ -15,6 +15,7 @@ type EagerUserAnswers = {
   readonly selectionID?: string | null;
   readonly questionID?: string | null;
   readonly value?: number | null;
+  readonly userID?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -28,6 +29,7 @@ type LazyUserAnswers = {
   readonly selectionID?: string | null;
   readonly questionID?: string | null;
   readonly value?: number | null;
+  readonly userID?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

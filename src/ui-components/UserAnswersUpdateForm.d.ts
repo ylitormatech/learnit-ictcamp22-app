@@ -17,11 +17,13 @@ export declare type UserAnswersUpdateFormInputValues = {
     selectionID?: string;
     questionID?: string;
     value?: number;
+    userID?: string;
 };
 export declare type UserAnswersUpdateFormValidationValues = {
     selectionID?: ValidationFunction<string>;
     questionID?: ValidationFunction<string>;
     value?: ValidationFunction<number>;
+    userID?: ValidationFunction<string>;
 };
 export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserAnswersUpdateFormOverridesProps = {
@@ -29,6 +31,7 @@ export declare type UserAnswersUpdateFormOverridesProps = {
     selectionID?: FormProps<TextFieldProps>;
     questionID?: FormProps<TextFieldProps>;
     value?: FormProps<TextFieldProps>;
+    userID?: FormProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UserAnswersUpdateFormProps = React.PropsWithChildren<{
     overrides?: UserAnswersUpdateFormOverridesProps | undefined | null;

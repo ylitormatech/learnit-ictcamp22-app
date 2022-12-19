@@ -3,6 +3,7 @@ type UserAnswers @model @auth(rules: [{allow: public}]) {
   selectionID: ID
   questionID: ID
   value: Int
+  userID: ID
 }
 
 type Selection @model @auth(rules: [{allow: public}]) {
