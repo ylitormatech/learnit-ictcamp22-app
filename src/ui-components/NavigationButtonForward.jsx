@@ -10,6 +10,7 @@ import {
   getOverrideProps,
   getOverridesFromVariants,
   mergeVariantsAndOverrides,
+  useNavigateAction,
 } from "@aws-amplify/ui-react/internal";
 import { Icon, Text, View } from "@aws-amplify/ui-react";
 export default function NavigationButtonForward(props) {
@@ -87,6 +88,10 @@ export default function NavigationButtonForward(props) {
     getOverridesFromVariants(variants, props),
     overridesProp || {}
   );
+  const navigationButtonForwardOnClick = useNavigateAction({
+    type: "url",
+    url: "",
+  });
   return (
     <View
       width="152px"
@@ -97,6 +102,9 @@ export default function NavigationButtonForward(props) {
       justifyContent="unset"
       position="relative"
       padding="0px 0px 0px 0px"
+      onClick={() => {
+        navigationButtonForwardOnClick();
+      }}
       {...rest}
       {...getOverrideProps(overrides, "NavigationButtonForward")}
     >
