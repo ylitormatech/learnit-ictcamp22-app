@@ -36,3 +36,53 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: #D0E1EF;
+  margin: 0px;
+  padding: 0px;
+}
+
+h1 {
+  margin: 0px;
+}
+
+h2 {
+  font-family: 'Bai Jamjuree';
+  color: black;
+  text-align: center;
+  font-size: 30px;
+}
+
+p {
+  font-family: 'Roboto';
+  color: #173F5F;
+  text-align: center;
+}
+
+.header {
+  display: block;
+  background-color: #173F5F;
+  font-family: 'Orbitron';
+  color: white;
+  text-align: center;
+  font-weight: 800;
+  font-size: 50px;
+  padding: 0px;
+}
+
+.info {
+  display: block;
+  width: 830px;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  text-align: center;
+  font-size: 16px;
+}
+
+.navigation {
+  display: inline-block;
+  background-color:#D0E1EF;
+}
