@@ -3,13 +3,9 @@ import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-
 import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
+//<<<<<<< HEAD
 
 
-
-<<<<<<< HEAD
-type EagerUserProfile = {
-  readonly [__modelMeta__]: {
-=======
 type EagerUserAnswers = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<UserAnswers, 'id'>;
@@ -78,7 +74,10 @@ export declare const Selection: (new (init: ModelInit<Selection>) => Selection) 
 
 type EagerUserProfile = {
   readonly [__modelMeta__]: {
->>>>>>> 0582d9e3c62db2a4e4b897ba962cc7bac081a23c
+//<<<<<<< HEAD
+//>>>>>>> 0582d9e3c62db2a4e4b897ba962cc7bac081a23c
+//=======
+//>>>>>>> edae2ede2d8c6fd0ef86de0c920057dc2b8b9430
     identifier: ManagedIdentifier<UserProfile, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };

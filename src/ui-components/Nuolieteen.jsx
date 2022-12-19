@@ -6,7 +6,6 @@
 
 /* eslint-disable */
 import * as React from "react";
-
 import {
   getOverrideProps,
   useNavigateAction,
@@ -18,7 +17,6 @@ export default function Nuolieteen(props) {
     type: "url",
     url: questions?.id,
   });
-//>>>>>>> 0582d9e3c62db2a4e4b897ba962cc7bac081a23c
   return (
     <Icon
       width="40px"
