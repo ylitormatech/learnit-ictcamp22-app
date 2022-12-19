@@ -6,6 +6,7 @@ import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
 
+<<<<<<< HEAD
 type EagerUserAnswers = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<UserAnswers, 'id'>;
@@ -74,6 +75,10 @@ export declare const Selection: (new (init: ModelInit<Selection>) => Selection) 
 
 type EagerUserProfile = {
   readonly [__modelMeta__]: {
+=======
+type EagerUserProfile = {
+  readonly [__modelMeta__]: {
+>>>>>>> e3d0c8f6f31c72d69653456acd98bf35b3d250b9
     identifier: ManagedIdentifier<UserProfile, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };

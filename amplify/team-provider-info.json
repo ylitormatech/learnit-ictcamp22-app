@@ -16,5 +16,18 @@
         "learnitictcamp22app": {}
       }
     }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-learnitictcamp22app-dev-152356-authRole",
+      "UnauthRoleArn": "arn:aws:iam::302443779394:role/amplify-learnitictcamp22app-dev-152356-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::302443779394:role/amplify-learnitictcamp22app-dev-152356-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-learnitictcamp22app-dev-152356-deployment",
+      "UnauthRoleName": "amplify-learnitictcamp22app-dev-152356-unauthRole",
+      "StackName": "amplify-learnitictcamp22app-dev-152356",
+      "StackId": "arn:aws:cloudformation:eu-north-1:302443779394:stack/amplify-learnitictcamp22app-dev-152356/90ad8740-7bb2-11ed-827e-0ee45cd60ea8",
+      "AmplifyAppId": "d1we7iqz4euf5e"
+    }
   }
 }

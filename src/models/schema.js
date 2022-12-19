@@ -1,5 +1,6 @@
 export const schema = {
     "models": {
+<<<<<<< HEAD
         "UserAnswers": {
             "name": "UserAnswers",
             "fields": {
@@ -153,6 +154,8 @@ export const schema = {
                 }
             ]
         },
+=======
+>>>>>>> e3d0c8f6f31c72d69653456acd98bf35b3d250b9
         "UserProfile": {
             "name": "UserProfile",
             "fields": {
@@ -317,5 +320,9 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.2",
+<<<<<<< HEAD
     "version": "9030a4f40bb100f07a60260964d132ea"
+=======
+    "version": "385a6db8e060bacfc5023fe3a3f6990b"
+>>>>>>> e3d0c8f6f31c72d69653456acd98bf35b3d250b9
 };
