@@ -5,12 +5,12 @@
  **************************************************************************/
 
 import * as React from "react";
-import { Questions } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { IconProps } from "@aws-amplify/ui-react";
-export declare type NuolieteenProps = React.PropsWithChildren<Partial<IconProps> & {
-    questions?: Questions;
+import { ViewProps } from "@aws-amplify/ui-react";
+export declare type SectionProps = React.PropsWithChildren<Partial<ViewProps> & {
+    completed?: "False" | "True";
+    isLast?: "False" | "True";
 } & {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
-export default function Nuolieteen(props: NuolieteenProps): React.ReactElement;
+export default function Section(props: SectionProps): React.ReactElement;

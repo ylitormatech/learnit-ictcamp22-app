@@ -1,3 +1,20 @@
+
+type UserAnswers @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  selectionID: ID
+  questionID: ID
+  value: Int
+  userID: ID
+}
+
+type Selection @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  questionID: ID
+  description: String
+  value: Int
+}
+
+>>>>>>> 0582d9e3c62db2a4e4b897ba962cc7bac081a23c
 type UserProfile @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String
@@ -11,6 +28,6 @@ type Questions @model @auth(rules: [{allow: public}]) {
   questionName: String
   questionDescription: String
   min: Int
-  max: String
+  max: Int!
 }
  

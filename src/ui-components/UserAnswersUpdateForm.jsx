@@ -7,14 +7,14 @@
 /* eslint-disable */
 import * as React from "react";
 import { fetchByPath, validateField } from "./utils";
-import { Questions } from "../models";
+import { UserAnswers } from "../models";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { DataStore } from "aws-amplify";
-export default function QuestionsUpdateForm(props) {
+export default function UserAnswersUpdateForm(props) {
   const {
     id,
-    questions,
+    userAnswers,
     onSuccess,
     onError,
     onSubmit,
@@ -25,42 +25,40 @@ export default function QuestionsUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    questionName: undefined,
-    questionDescription: undefined,
-    min: undefined,
-    max: undefined,
+    selectionID: undefined,
+    questionID: undefined,
+    value: undefined,
+    userID: undefined,
   };
-  const [questionName, setQuestionName] = React.useState(
-    initialValues.questionName
+  const [selectionID, setSelectionID] = React.useState(
+    initialValues.selectionID
   );
-  const [questionDescription, setQuestionDescription] = React.useState(
-    initialValues.questionDescription
-  );
-  const [min, setMin] = React.useState(initialValues.min);
-  const [max, setMax] = React.useState(initialValues.max);
+  const [questionID, setQuestionID] = React.useState(initialValues.questionID);
+  const [value, setValue] = React.useState(initialValues.value);
+  const [userID, setUserID] = React.useState(initialValues.userID);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = { ...initialValues, ...questionsRecord };
-    setQuestionName(cleanValues.questionName);
-    setQuestionDescription(cleanValues.questionDescription);
-    setMin(cleanValues.min);
-    setMax(cleanValues.max);
+    const cleanValues = { ...initialValues, ...userAnswersRecord };
+    setSelectionID(cleanValues.selectionID);
+    setQuestionID(cleanValues.questionID);
+    setValue(cleanValues.value);
+    setUserID(cleanValues.userID);
     setErrors({});
   };
-  const [questionsRecord, setQuestionsRecord] = React.useState(questions);
+  const [userAnswersRecord, setUserAnswersRecord] = React.useState(userAnswers);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = id ? await DataStore.query(Questions, id) : questions;
-      setQuestionsRecord(record);
+      const record = id ? await DataStore.query(UserAnswers, id) : userAnswers;
+      setUserAnswersRecord(record);
     };
     queryData();
-  }, [id, questions]);
-  React.useEffect(resetStateValues, [questionsRecord]);
+  }, [id, userAnswers]);
+  React.useEffect(resetStateValues, [userAnswersRecord]);
   const validations = {
-    questionName: [],
-    questionDescription: [],
-    min: [],
-    max: [{ type: "Required" }],
+    selectionID: [],
+    questionID: [],
+    value: [],
+    userID: [],
   };
   const runValidationTasks = async (fieldName, value) => {
     let validationResponse = validateField(value, validations[fieldName]);
@@ -80,10 +78,10 @@ export default function QuestionsUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          questionName,
-          questionDescription,
-          min,
-          max,
+          selectionID,
+          questionID,
+          value,
+          userID,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -109,7 +107,7 @@ export default function QuestionsUpdateForm(props) {
         }
         try {
           await DataStore.save(
-            Questions.copyOf(questionsRecord, (updated) => {
+            UserAnswers.copyOf(userAnswersRecord, (updated) => {
               Object.assign(updated, modelFields);
             })
           );
@@ -123,135 +121,124 @@ export default function QuestionsUpdateForm(props) {
         }
       }}
       {...rest}
-      {...getOverrideProps(overrides, "QuestionsUpdateForm")}
+      {...getOverrideProps(overrides, "UserAnswersUpdateForm")}
     >
       <TextField
-        label="Question name"
+        label="Selection id"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={questionName}
+        defaultValue={selectionID}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              questionName: value,
-              questionDescription,
-              min,
-              max,
+              selectionID: value,
+              questionID,
+              value,
+              userID,
             };
             const result = onChange(modelFields);
-            value = result?.questionName ?? value;
+            value = result?.selectionID ?? value;
           }
-          if (errors.questionName?.hasError) {
-            runValidationTasks("questionName", value);
+          if (errors.selectionID?.hasError) {
+            runValidationTasks("selectionID", value);
           }
-          setQuestionName(value);
+          setSelectionID(value);
         }}
-        onBlur={() => runValidationTasks("questionName", questionName)}
-        errorMessage={errors.questionName?.errorMessage}
-        hasError={errors.questionName?.hasError}
-        {...getOverrideProps(overrides, "questionName")}
+        onBlur={() => runValidationTasks("selectionID", selectionID)}
+        errorMessage={errors.selectionID?.errorMessage}
+        hasError={errors.selectionID?.hasError}
+        {...getOverrideProps(overrides, "selectionID")}
       ></TextField>
       <TextField
-        label="Question description"
+        label="Question id"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={questionDescription}
+        defaultValue={questionID}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              questionName,
-              questionDescription: value,
-              min,
-              max,
+              selectionID,
+              questionID: value,
+              value,
+              userID,
             };
             const result = onChange(modelFields);
-            value = result?.questionDescription ?? value;
+            value = result?.questionID ?? value;
           }
-          if (errors.questionDescription?.hasError) {
-            runValidationTasks("questionDescription", value);
+          if (errors.questionID?.hasError) {
+            runValidationTasks("questionID", value);
           }
-          setQuestionDescription(value);
+          setQuestionID(value);
         }}
-        onBlur={() =>
-          runValidationTasks("questionDescription", questionDescription)
-        }
-        errorMessage={errors.questionDescription?.errorMessage}
-        hasError={errors.questionDescription?.hasError}
-        {...getOverrideProps(overrides, "questionDescription")}
+        onBlur={() => runValidationTasks("questionID", questionID)}
+        errorMessage={errors.questionID?.errorMessage}
+        hasError={errors.questionID?.hasError}
+        {...getOverrideProps(overrides, "questionID")}
       ></TextField>
       <TextField
-        label="Min"
+        label="Value"
         isRequired={false}
         isReadOnly={false}
         type="number"
         step="any"
-        defaultValue={min}
+        defaultValue={value}
         onChange={(e) => {
           let value = parseInt(e.target.value);
           if (isNaN(value)) {
             setErrors((errors) => ({
               ...errors,
-              min: "Value must be a valid number",
+              value: "Value must be a valid number",
             }));
             return;
           }
           if (onChange) {
             const modelFields = {
-              questionName,
-              questionDescription,
-              min: value,
-              max,
+              selectionID,
+              questionID,
+              value: value,
+              userID,
             };
             const result = onChange(modelFields);
-            value = result?.min ?? value;
+            value = result?.value ?? value;
           }
-          if (errors.min?.hasError) {
-            runValidationTasks("min", value);
+          if (errors.value?.hasError) {
+            runValidationTasks("value", value);
           }
-          setMin(value);
+          setValue(value);
         }}
-        onBlur={() => runValidationTasks("min", min)}
-        errorMessage={errors.min?.errorMessage}
-        hasError={errors.min?.hasError}
-        {...getOverrideProps(overrides, "min")}
+        onBlur={() => runValidationTasks("value", value)}
+        errorMessage={errors.value?.errorMessage}
+        hasError={errors.value?.hasError}
+        {...getOverrideProps(overrides, "value")}
       ></TextField>
       <TextField
-        label="Max"
-        isRequired={true}
+        label="User id"
+        isRequired={false}
         isReadOnly={false}
-        type="number"
-        step="any"
-        defaultValue={max}
+        defaultValue={userID}
         onChange={(e) => {
-          let value = parseInt(e.target.value);
-          if (isNaN(value)) {
-            setErrors((errors) => ({
-              ...errors,
-              max: "Value must be a valid number",
-            }));
-            return;
-          }
+          let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              questionName,
-              questionDescription,
-              min,
-              max: value,
+              selectionID,
+              questionID,
+              value,
+              userID: value,
             };
             const result = onChange(modelFields);
-            value = result?.max ?? value;
+            value = result?.userID ?? value;
           }
-          if (errors.max?.hasError) {
-            runValidationTasks("max", value);
+          if (errors.userID?.hasError) {
+            runValidationTasks("userID", value);
           }
-          setMax(value);
+          setUserID(value);
         }}
-        onBlur={() => runValidationTasks("max", max)}
-        errorMessage={errors.max?.errorMessage}
-        hasError={errors.max?.hasError}
-        {...getOverrideProps(overrides, "max")}
+        onBlur={() => runValidationTasks("userID", userID)}
+        errorMessage={errors.userID?.errorMessage}
+        hasError={errors.userID?.hasError}
+        {...getOverrideProps(overrides, "userID")}
       ></TextField>
       <Flex
         justifyContent="space-between"

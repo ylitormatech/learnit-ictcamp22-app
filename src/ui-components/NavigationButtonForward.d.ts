@@ -5,12 +5,11 @@
  **************************************************************************/
 
 import * as React from "react";
-import { Questions } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { IconProps } from "@aws-amplify/ui-react";
-export declare type NuolieteenProps = React.PropsWithChildren<Partial<IconProps> & {
-    questions?: Questions;
+import { ViewProps } from "@aws-amplify/ui-react";
+export declare type NavigationButtonForwardProps = React.PropsWithChildren<Partial<ViewProps> & {
+    state?: "Click" | "Default" | "Hover";
 } & {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
-export default function Nuolieteen(props: NuolieteenProps): React.ReactElement;
+export default function NavigationButtonForward(props: NavigationButtonForwardProps): React.ReactElement;
