@@ -5,4 +5,4 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 
 
-import survey_first_page from '../survey_first_page';
+import survey_first_page from '../components';
