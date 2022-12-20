@@ -58,7 +58,7 @@ export default function UserAnswersUpdateForm(props) {
     selectionID: [],
     questionID: [],
     value: [],
-    userID: [],
+    userID: [{ type: "Required" }],
   };
   const runValidationTasks = async (fieldName, value) => {
     let validationResponse = validateField(value, validations[fieldName]);
@@ -215,7 +215,7 @@ export default function UserAnswersUpdateForm(props) {
       ></TextField>
       <TextField
         label="User id"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         defaultValue={userID}
         onChange={(e) => {
