@@ -7,8 +7,7 @@ import { Amplify } from 'aws-amplify';
 
 import { Link, withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 import awsExports from './aws-exports';
 
