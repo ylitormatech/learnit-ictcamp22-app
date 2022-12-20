@@ -3,6 +3,7 @@ import { Link, withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import awsExports from './aws-exports';
 import './App.css';
+import survey_first_page from '../survey_first_page';
 Amplify.configure(awsExports);
 function App({ signOut, user }) {
   return (
@@ -17,9 +18,7 @@ function App({ signOut, user }) {
       </div>
       <p>Hello {user.username}</p>
       <button onClick={signOut}>Kirjaudu ulos</button>
-      <Link to={"./survey_first_page"}>
-        Kysymyksiin
-        </Link>
+      <a href="'../survey_first_page'">Kysymyksiin</a>
     </div>
       );
 };
