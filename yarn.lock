@@ -365,10 +365,9 @@
     "@aws-sdk/util-utf8-browser" "^3.0.0"
     "tslib" "^1.11.1"
 
-"@aws-crypto/util@^2.0.0":
-  "integrity" "sha512-Lgu5v/0e/BcrZ5m/IWqzPUf3UYFTy/PpeED+uc9SWUR1iZQL8XXbGQg10UfllwwBryO3hFF5dizK+78aoXC1eA=="
-  "resolved" "https://registry.npmjs.org/@aws-crypto/util/-/util-2.0.2.tgz"
-  "version" "2.0.2"
+"@aws-sdk/abort-controller@npm:3.186.0":
+  version: 3.186.0
+  resolution: "@aws-sdk/abort-controller@npm:3.186.0"
   dependencies:
     "@aws-sdk/types" "^3.110.0"
     "@aws-sdk/util-utf8-browser" "^3.0.0"
@@ -1909,15 +1908,16 @@
   "resolved" "https://registry.npmjs.org/@aws-sdk/types/-/types-3.6.1.tgz"
   "version" "3.6.1"
 
-"@aws-sdk/types@^3.110.0", "@aws-sdk/types@3.186.0":
-  "integrity" "sha512-NatmSU37U+XauMFJCdFI6nougC20JUFZar+ump5wVv0i54H+2Refg1YbFDxSs0FY28TSB9jfhWIpfFBmXgL5MQ=="
-  "resolved" "https://registry.npmjs.org/@aws-sdk/types/-/types-3.186.0.tgz"
-  "version" "3.186.0"
+"@aws-sdk/types@npm:3.6.1, @aws-sdk/types@npm:^3.1.0":
+  version: 3.6.1
+  resolution: "@aws-sdk/types@npm:3.6.1"
+  checksum: 8009041b9da474873c26b316b38c13535e59f9736ea376719cc475a4b85a4585e7322c7a5d566170028d0696aafadd33c416fbe8c06596f8252e75b383607eaf
+  languageName: node
+  linkType: hard
 
-"@aws-sdk/url-parser-native@3.6.1":
-  "integrity" "sha512-3O+ktsrJoE8YQCho9L41YXO8EWILXrSeES7amUaV3mgIV5w4S3SB/r4RkmylpqRpQF7Ry8LFiAnMqH1wa4WBPA=="
-  "resolved" "https://registry.npmjs.org/@aws-sdk/url-parser-native/-/url-parser-native-3.6.1.tgz"
-  "version" "3.6.1"
+"@aws-sdk/url-parser-native@npm:3.6.1":
+  version: 3.6.1
+  resolution: "@aws-sdk/url-parser-native@npm:3.6.1"
   dependencies:
     "@aws-sdk/querystring-parser" "3.6.1"
     "@aws-sdk/types" "3.6.1"

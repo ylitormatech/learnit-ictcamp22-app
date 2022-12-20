@@ -25,8 +25,8 @@ function SurveyFirstPage(/*{ signOut, user }*/) {
         <div class='kysymys'>
           <Kysymys1 />
         </div>
-        <NavigationButtonBack />
-        <NavigationButtonForward />
+        
+
       </>
   );
 }

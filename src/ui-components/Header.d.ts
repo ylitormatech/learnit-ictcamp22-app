@@ -8,6 +8,8 @@ import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { ViewProps } from "@aws-amplify/ui-react";
 export declare type HeaderProps = React.PropsWithChildren<Partial<ViewProps> & {
+    rectangle1?: React.ReactNode;
+} & {
     property1?: "Default";
 } & {
     overrides?: EscapeHatchProps | undefined | null;

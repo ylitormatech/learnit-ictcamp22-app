@@ -6,7 +6,7 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { GridProps, RadioGroupFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, RadioGroupFieldProps } from "@aws-amplify/ui-react";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -14,20 +14,14 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type Kysymys1InputValues = {
     Field0?: string;
-    question?: string;
-    selections?: string[];
 };
 export declare type Kysymys1ValidationValues = {
     Field0?: ValidationFunction<string>;
-    question?: ValidationFunction<string>;
-    selections?: ValidationFunction<string>;
 };
 export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type Kysymys1OverridesProps = {
     Kysymys1Grid?: FormProps<GridProps>;
     Field0?: FormProps<RadioGroupFieldProps>;
-    question?: FormProps<TextFieldProps>;
-    selections?: FormProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type Kysymys1Props = React.PropsWithChildren<{
     overrides?: Kysymys1OverridesProps | undefined | null;
