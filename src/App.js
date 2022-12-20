@@ -3,7 +3,6 @@ import { Amplify } from 'aws-amplify';
 import { Link, withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
-
 import awsExports from './aws-exports';
 
 import './App.css';
@@ -28,6 +27,5 @@ function App({ signOut, user }) {
       </>
   );
 }
-
 
 export default withAuthenticator(App);
