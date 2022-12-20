@@ -60,11 +60,7 @@ export default function QuestionsUpdateForm(props) {
     questionName: [],
     questionDescription: [],
     min: [],
-<<<<<<< HEAD
     max: [{ type: "Required" }],
-=======
-    max: [],
->>>>>>> e3d0c8f6f31c72d69653456acd98bf35b3d250b9
   };
   const runValidationTasks = async (fieldName, value) => {
     let validationResponse = validateField(value, validations[fieldName]);
@@ -223,7 +219,6 @@ export default function QuestionsUpdateForm(props) {
       ></TextField>
       <TextField
         label="Max"
-<<<<<<< HEAD
         isRequired={true}
         isReadOnly={false}
         type="number"
@@ -238,13 +233,6 @@ export default function QuestionsUpdateForm(props) {
             }));
             return;
           }
-=======
-        isRequired={false}
-        isReadOnly={false}
-        defaultValue={max}
-        onChange={(e) => {
-          let { value } = e.target;
->>>>>>> e3d0c8f6f31c72d69653456acd98bf35b3d250b9
           if (onChange) {
             const modelFields = {
               questionName,

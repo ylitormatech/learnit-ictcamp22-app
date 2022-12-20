@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 type UserAnswers @model @auth(rules: [{allow: public}]) {
   id: ID!
   selectionID: ID
@@ -14,8 +13,6 @@ type Selection @model @auth(rules: [{allow: public}]) {
   value: Int
 }
 
-=======
->>>>>>> e3d0c8f6f31c72d69653456acd98bf35b3d250b9
 type UserProfile @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String

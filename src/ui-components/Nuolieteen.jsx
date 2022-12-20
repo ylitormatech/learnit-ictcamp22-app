@@ -6,10 +6,17 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import {
+  getOverrideProps,
+  useNavigateAction,
+} from "@aws-amplify/ui-react/internal";
 import { Icon } from "@aws-amplify/ui-react";
 export default function Nuolieteen(props) {
-  const { overrides, ...rest } = props;
+  const { questions, overrides, ...rest } = props;
+  const nuolieteenOnClick = useNavigateAction({
+    type: "url",
+    url: questions?.id,
+  });
   return (
     <Icon
       width="40px"
@@ -36,6 +43,9 @@ export default function Nuolieteen(props) {
           style: { transform: "translate(25%, 50%)" },
         },
       ]}
+      onClick={() => {
+        nuolieteenOnClick();
+      }}
       {...rest}
       {...getOverrideProps(overrides, "Nuolieteen")}
     ></Icon>

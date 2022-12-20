@@ -17,21 +17,13 @@ export declare type QuestionsUpdateFormInputValues = {
     questionName?: string;
     questionDescription?: string;
     min?: number;
-<<<<<<< HEAD
     max?: number;
-=======
-    max?: string;
->>>>>>> e3d0c8f6f31c72d69653456acd98bf35b3d250b9
 };
 export declare type QuestionsUpdateFormValidationValues = {
     questionName?: ValidationFunction<string>;
     questionDescription?: ValidationFunction<string>;
     min?: ValidationFunction<number>;
-<<<<<<< HEAD
     max?: ValidationFunction<number>;
-=======
-    max?: ValidationFunction<string>;
->>>>>>> e3d0c8f6f31c72d69653456acd98bf35b3d250b9
 };
 export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type QuestionsUpdateFormOverridesProps = {
