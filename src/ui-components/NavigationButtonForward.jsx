@@ -14,7 +14,7 @@ import {
 } from "@aws-amplify/ui-react/internal";
 import { Icon, Text, View } from "@aws-amplify/ui-react";
 export default function NavigationButtonForward(props) {
-  const { overrides: overridesProp, ...rest } = props;
+  const { navigationButtonForward, overrides: overridesProp, ...rest } = props;
   const variants = [
     {
       overrides: {

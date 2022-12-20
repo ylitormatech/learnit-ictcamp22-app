@@ -6,16 +6,6 @@ type UserAnswers @model @auth(rules: [{allow: public}]) {
   userID: ID!
 }
 
-<<<<<<< HEAD
-type Selection @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  questionID: ID
-  description: String
-  value: Int
-}
-
-=======
->>>>>>> 7f89d64894aed0694f1a85f15a3dc3d91bdc8fbe
 type UserProfile @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String

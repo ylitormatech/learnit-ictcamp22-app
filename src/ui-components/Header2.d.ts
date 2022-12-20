@@ -7,11 +7,9 @@
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { ViewProps } from "@aws-amplify/ui-react";
-export declare type NavigationButtonForwardProps = React.PropsWithChildren<Partial<ViewProps> & {
-    navigationButtonForward?: React.ReactNode;
-} & {
-    state?: "Click" | "Default" | "Hover";
+export declare type Header2Props = React.PropsWithChildren<Partial<ViewProps> & {
+    property1?: "Default";
 } & {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
-export default function NavigationButtonForward(props: NavigationButtonForwardProps): React.ReactElement;
+export default function Header2(props: Header2Props): React.ReactElement;

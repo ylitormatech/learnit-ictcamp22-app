@@ -69,7 +69,15 @@ p {
   text-align: center;
   font-weight: 800;
   font-size: 50px;
-  padding: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav {
+  display: block;
+  width: 830px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .info {
@@ -81,4 +89,20 @@ p {
   background-color: #FFFFFF;
   text-align: center;
   font-size: 16px;
+}
+
+.kysymys {
+  display: block;
+  width: 830px;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #FFFFFF;
+  font-size: 16px;
+}
+
+.user {
+  width: 830px;
+  margin-left: auto;
+  margin-right: auto;
 }

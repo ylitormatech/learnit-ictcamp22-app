@@ -10,6 +10,7 @@ export { default as Section } from "./Section";
 export { default as Header } from "./Header";
 export { default as MyIcon } from "./MyIcon";
 export { default as Navigation } from "./Navigation";
+export { default as Header2 } from "./Header2";
 export { default as Nuolieteen } from "./Nuolieteen";
 export { default as NavigationButtonForward } from "./NavigationButtonForward";
 export { default as ProgressionBar } from "./ProgressionBar";
