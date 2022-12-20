@@ -15,7 +15,7 @@ type EagerUserAnswers = {
   readonly selectionID?: string | null;
   readonly questionID?: string | null;
   readonly value?: number | null;
-  readonly userID?: string | null;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -29,7 +29,7 @@ type LazyUserAnswers = {
   readonly selectionID?: string | null;
   readonly questionID?: string | null;
   readonly value?: number | null;
-  readonly userID?: string | null;
+  readonly userID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -38,38 +38,6 @@ export declare type UserAnswers = LazyLoading extends LazyLoadingDisabled ? Eage
 
 export declare const UserAnswers: (new (init: ModelInit<UserAnswers>) => UserAnswers) & {
   copyOf(source: UserAnswers, mutator: (draft: MutableModel<UserAnswers>) => MutableModel<UserAnswers> | void): UserAnswers;
-}
-
-type EagerSelection = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Selection, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly questionID?: string | null;
-  readonly description?: string | null;
-  readonly value?: number | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-type LazySelection = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<Selection, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly questionID?: string | null;
-  readonly description?: string | null;
-  readonly value?: number | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-export declare type Selection = LazyLoading extends LazyLoadingDisabled ? EagerSelection : LazySelection
-
-export declare const Selection: (new (init: ModelInit<Selection>) => Selection) & {
-  copyOf(source: Selection, mutator: (draft: MutableModel<Selection>) => MutableModel<Selection> | void): Selection;
 }
 
 type EagerUserProfile = {
@@ -81,7 +49,7 @@ type EagerUserProfile = {
   readonly username?: string | null;
   readonly firstname?: string | null;
   readonly lastname?: string | null;
-  readonly email?: string | null;
+  readonly email: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -95,7 +63,7 @@ type LazyUserProfile = {
   readonly username?: string | null;
   readonly firstname?: string | null;
   readonly lastname?: string | null;
-  readonly email?: string | null;
+  readonly email: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -112,10 +80,10 @@ type EagerQuestions = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly questionName?: string | null;
-  readonly questionDescription?: string | null;
+  readonly question: string;
   readonly min?: number | null;
   readonly max: number;
+  readonly selections?: (string | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -126,10 +94,10 @@ type LazyQuestions = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly questionName?: string | null;
-  readonly questionDescription?: string | null;
+  readonly question: string;
   readonly min?: number | null;
   readonly max: number;
+  readonly selections?: (string | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

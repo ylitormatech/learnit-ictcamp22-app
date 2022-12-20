@@ -1,31 +1,42 @@
 import { Amplify } from 'aws-amplify';
-
-import { Link, withAuthenticator } from '@aws-amplify/ui-react';
+import { Link, Flex, Heading, withAuthenticator } from '@aws-amplify/ui-react';
+import {
+    BrowserRouter as Router,
+    Link as ReactRouterLink,
+    Routes,
+    Route,
+} from 'react-router-dom';
 import '@aws-amplify/ui-react/styles.css';
-
 import awsExports from './aws-exports';
-
 import './App.css';
-import { NavigationButtonForward } from './ui-components';
-
+import SurveyFirstPage from './components/SurveyFirstPage';
+import Home from './components/Home';
+import Header from "./ui-components/Header";
 Amplify.configure(awsExports);
-
 function App({ signOut, user }) {
+
   return (
-      <>
-        <div class='header'>
-          <h1>BEARIT</h1>
-        </div>
-        <h2>ICT-Camp vaikuttavuuskysely</h2>
-        <div class='info'>
-          <p>Kyselyn pohjustusteksti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-          Sed ac ullamcorper ipsum... Ut sollicitudin justo ut nulla facilisis, egestas congue ex faucibus.</p>
-        </div>
+    <div>
+
+        <Header />
+        <Router>
+            <Flex>
+
+                <ReactRouterLink to="/" component={Link}>Home</ReactRouterLink>
+                <ReactRouterLink to="/kysely" component={Link}>Kysely</ReactRouterLink>
+
+            </Flex>
+
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/kysely" element={<SurveyFirstPage />} />
+
+            </Routes>
+        </Router>
         <p>Hello {user.username}</p>
         <button onClick={signOut}>Kirjaudu ulos</button>
-        <NavigationButtonForward />
-      </>
-  );
-}
 
+    </div>
+      );
+};
 export default withAuthenticator(App);

@@ -3,9 +3,10 @@ type UserAnswers @model @auth(rules: [{allow: public}]) {
   selectionID: ID
   questionID: ID
   value: Int
-  userID: ID
+  userID: ID!
 }
 
+<<<<<<< HEAD
 type Selection @model @auth(rules: [{allow: public}]) {
   id: ID!
   questionID: ID
@@ -13,19 +14,21 @@ type Selection @model @auth(rules: [{allow: public}]) {
   value: Int
 }
 
+=======
+>>>>>>> 7f89d64894aed0694f1a85f15a3dc3d91bdc8fbe
 type UserProfile @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String
   firstname: String
   lastname: String
-  email: String
+  email: String!
 }
 
 type Questions @model @auth(rules: [{allow: public}]) {
   id: ID!
-  questionName: String
-  questionDescription: String
+  question: String!
   min: Int
   max: Int!
+  selections: [String]
 }
  

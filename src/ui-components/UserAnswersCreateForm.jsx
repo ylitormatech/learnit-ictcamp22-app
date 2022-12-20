@@ -47,7 +47,7 @@ export default function UserAnswersCreateForm(props) {
     selectionID: [],
     questionID: [],
     value: [],
-    userID: [],
+    userID: [{ type: "Required" }],
   };
   const runValidationTasks = async (fieldName, value) => {
     let validationResponse = validateField(value, validations[fieldName]);
@@ -200,7 +200,7 @@ export default function UserAnswersCreateForm(props) {
       ></TextField>
       <TextField
         label="User id"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         onChange={(e) => {
           let { value } = e.target;
